@@ -4,7 +4,7 @@ namespace ViicSlen\Addressable;
 
 use ViicSlen\Addressable\Contracts\ValidatesAddress;
 use ViicSlen\Addressable\Exceptions\AddressBook\InvalidAddressValidator;
-use ViicSlen\Addressable\Models\AddressBook\Address;
+use ViicSlen\Addressable\Models\Address;
 
 class Addressable
 {

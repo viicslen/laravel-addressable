@@ -5,7 +5,7 @@ namespace ViicSlen\Addressable\Concerns\AddressBook;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Illuminate\Database\Eloquent\Relations\MorphOne;
-use ViicSlen\Addressable\Models\AddressBook\Address;
+use ViicSlen\Addressable\Models\Address;
 
 /**
  * @used-by \Illuminate\Database\Eloquent\Model
@@ -16,7 +16,7 @@ trait HasAddresses
 {
     public function addresses(): MorphMany
     {
-        return $this->morphMany(Address::class, 'addressable');
+        return $this->morphMany(\ViicSlen\Addressable\Models\Address::class, 'addressable');
     }
 
     public function billingAddresses(): MorphMany

@@ -3,7 +3,7 @@
 namespace ViicSlen\Addressable\Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
-use ViicSlen\Addressable\Models\AddressBook\Address;
+use ViicSlen\Addressable\Models\Address;
 
 class AddressFactory extends Factory
 {

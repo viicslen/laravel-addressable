@@ -2,7 +2,7 @@
 
 namespace ViicSlen\Addressable\Contracts;
 
-use ViicSlen\Addressable\Models\AddressBook\Address;
+use ViicSlen\Addressable\Models\Address;
 
 interface ValidatesAddress
 {

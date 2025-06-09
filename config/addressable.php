@@ -4,7 +4,7 @@ return [
     'model' => [
         'connection' => env('ADDRESSABLE_MODEL_CONNECTION'),
         'table' => env('ADDRESSABLE_MODEL_TABLE', 'addresses'),
-        'class' => env('ADDRESSABLE_MODEL_CLASS', \ViicSlen\Addressable\Models\AddressBook\Address::class),
+        'class' => env('ADDRESSABLE_MODEL_CLASS', \ViicSlen\Addressable\Models\Address::class),
     ],
 
     'validation' => [
