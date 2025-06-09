@@ -4,7 +4,6 @@ namespace ViicSlen\Addressable\Events\AddressBook;
 
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
-use ViicSlen\Addressable\Models\Address;
 
 class AddressSaved
 {

@@ -5,7 +5,6 @@ namespace ViicSlen\Addressable\Concerns\AddressBook;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Illuminate\Database\Eloquent\Relations\MorphOne;
-use ViicSlen\Addressable\Models\Address;
 
 /**
  * @used-by \Illuminate\Database\Eloquent\Model
