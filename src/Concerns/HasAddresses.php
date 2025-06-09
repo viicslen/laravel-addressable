@@ -9,6 +9,7 @@ use ViicSlen\Addressable\Models\AddressBook\Address;
 
 /**
  * @used-by \Illuminate\Database\Eloquent\Model
+ *
  * @mixin \Illuminate\Database\Eloquent\Model
  */
 trait HasAddresses
@@ -21,7 +22,7 @@ trait HasAddresses
     public function billingAddresses(): MorphMany
     {
         return $this->addresses()->where('billing', true);
-}
+    }
 
     public function shippingAddresses(): MorphMany
     {
