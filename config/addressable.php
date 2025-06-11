@@ -1,10 +1,13 @@
 <?php
 
+use ViicSlen\Addressable\Models\Address;
+use ViicSlen\Addressable\Validators\UPSValidator;
+
 return [
     'model' => [
         'connection' => env('ADDRESSABLE_MODEL_CONNECTION'),
         'table' => env('ADDRESSABLE_MODEL_TABLE', 'addresses'),
-        'class' => env('ADDRESSABLE_MODEL_CLASS', \ViicSlen\Addressable\Models\Address::class),
+        'class' => env('ADDRESSABLE_MODEL_CLASS', Address::class),
     ],
 
     'validation' => [

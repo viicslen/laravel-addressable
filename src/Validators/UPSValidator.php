@@ -1,5 +1,8 @@
 <?php
 
+namespace ViicSlen\Addressable\Validators;
+
+use ViicSlen\Addressable\Enums\UPSRequestType;
 use ViicSlen\Addressable\Models\Address;
 
 class UPSValidator

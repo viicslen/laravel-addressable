@@ -1,6 +1,6 @@
 <?php
 
-namespace ViicSlen\Addressable\Concerns\AddressBook;
+namespace ViicSlen\Addressable\Concerns;
 
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
@@ -15,7 +15,7 @@ trait HasAddresses
 {
     public function addresses(): MorphMany
     {
-        return $this->morphMany(\ViicSlen\Addressable\Models\Address::class, 'addressable');
+        return $this->morphMany(Address::class, 'addressable');
     }
 
     public function billingAddresses(): MorphMany

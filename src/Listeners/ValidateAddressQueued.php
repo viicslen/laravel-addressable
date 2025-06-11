@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Listeners;
+namespace ViicSlen\Addressable\Listeners;
 
 use Illuminate\Contracts\Queue\ShouldQueue;
 use ViicSlen\Addressable\Concerns\HandlesAddressValidationEvents;
-use ViicSlen\Addressable\Events\AddressBook\AddressSaved;
+use ViicSlen\Addressable\Events\AddressSaved;
 use ViicSlen\Addressable\Facades\Addressable;
 
 class ValidateAddressQueued implements ShouldQueue

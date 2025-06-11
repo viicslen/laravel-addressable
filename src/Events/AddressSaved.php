@@ -1,6 +1,6 @@
 <?php
 
-namespace ViicSlen\Addressable\Events\AddressBook;
+namespace ViicSlen\Addressable\Events;
 
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;

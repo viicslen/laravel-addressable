@@ -2,14 +2,14 @@
 
 namespace ViicSlen\Addressable;
 
-use App\Listeners\ValidateAddress;
-use App\Listeners\ValidateAddressQueued;
+use ViicSlen\Addressable\Listeners\ValidateAddress;
+use ViicSlen\Addressable\Listeners\ValidateAddressQueued;
 use Illuminate\Support\Facades\Event;
 use Spatie\LaravelPackageTools\Commands\InstallCommand;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
 use ViicSlen\Addressable\Contracts\ValidatesAddress;
-use ViicSlen\Addressable\Events\AddressBook\AddressSaved;
+use ViicSlen\Addressable\Events\AddressSaved;
 use ViicSlen\Addressable\Exceptions\AddressBook\InvalidAddressValidator;
 
 class AddressableServiceProvider extends PackageServiceProvider
