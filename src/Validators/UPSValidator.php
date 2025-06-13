@@ -2,10 +2,12 @@
 
 namespace ViicSlen\Addressable\Validators;
 
+use Illuminate\Support\Facades\Http;
+use ViicSlen\Addressable\Contracts\ValidatesAddress;
 use ViicSlen\Addressable\Enums\UPSRequestType;
 use ViicSlen\Addressable\Models\Address;
 
-class UPSValidator
+class UPSValidator implements ValidatesAddress
 {
     public function __invoke(Address $address): bool
     {
