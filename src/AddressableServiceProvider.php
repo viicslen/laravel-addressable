@@ -41,7 +41,7 @@ class AddressableServiceProvider extends PackageServiceProvider
             throw new InvalidAddressValidator($validator);
         }
 
-        $this->app->bind(ValidatesAddress::class, new $validator);
+        $this->app->bind(ValidatesAddress::class, $validator);
     }
 
     public function packageBooted(): void
