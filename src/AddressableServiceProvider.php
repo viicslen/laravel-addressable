@@ -32,7 +32,7 @@ class AddressableServiceProvider extends PackageServiceProvider
     public function packageRegistered(): void
     {
         /** @var \ViicSlen\Addressable\Contracts\ValidatesAddress|null $validator */
-        $validator = config('addressable.validation.default');
+        $validator = config('addressable.validation.validator');
 
         if (! $validator) {
             return;
@@ -47,6 +47,10 @@ class AddressableServiceProvider extends PackageServiceProvider
 
     public function packageBooted(): void
     {
+        if (! config('addressable.validation.enabled', true)) {
+            return;
+        }
+
         $listener = config('addressable.validation.queued', true)
             ? ValidateAddressQueued::class
             : ValidateAddress::class;
