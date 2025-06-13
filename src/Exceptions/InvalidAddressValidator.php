@@ -12,7 +12,7 @@ class InvalidAddressValidator extends Exception
         parent::__construct(
             message: $validator === null
                 ? 'An address validator must be configured in the `addressable.default_validator` config in order to validate addresses.'
-                : sprintf("The configured address validator `%s` is not valid. It must implement `%s`.", $validator, ValidatesAddress::class)
+                : sprintf('The configured address validator `%s` is not valid. It must implement `%s`.', $validator, ValidatesAddress::class)
         );
     }
 }
