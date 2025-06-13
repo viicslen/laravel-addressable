@@ -3,6 +3,7 @@
 namespace ViicSlen\Addressable\Exceptions;
 
 use Exception;
+use ViicSlen\Addressable\Contracts\ValidatesAddress;
 
 class InvalidAddressValidator extends Exception
 {
@@ -11,7 +12,7 @@ class InvalidAddressValidator extends Exception
         parent::__construct(
             message: $validator === null
                 ? 'An address validator must be configured in the `addressable.default_validator` config in order to validate addresses.'
-                : "The configured address validator `{$validator}` is not valid. It must implement `ViicSlen\Addressable\Contracts\ValidatesAddress`."
+                : sprintf("The configured address validator `%s` is not valid. It must implement `%s`.", $validator, ValidatesAddress::class)
         );
     }
 }
