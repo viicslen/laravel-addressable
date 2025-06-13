@@ -8,7 +8,7 @@ use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
 use ViicSlen\Addressable\Contracts\ValidatesAddress;
 use ViicSlen\Addressable\Events\AddressSaved;
-use ViicSlen\Addressable\Exceptions\AddressBook\InvalidAddressValidator;
+use ViicSlen\Addressable\Exceptions\InvalidAddressValidator;
 use ViicSlen\Addressable\Listeners\ValidateAddress;
 use ViicSlen\Addressable\Listeners\ValidateAddressQueued;
 

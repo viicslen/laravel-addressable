@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Relations\MorphTo;
 use Rinvex\Country\Country;
 use ViicSlen\Addressable\Database\Factories\AddressFactory;
 use ViicSlen\Addressable\Events\AddressSaved;
-use ViicSlen\Addressable\Exceptions\AddressBook\ImmutableAddressException;
+use ViicSlen\Addressable\Exceptions\ImmutableAddressException;
 
 class Address extends Model
 {

@@ -1,6 +1,6 @@
 <?php
 
-namespace ViicSlen\Addressable\Exceptions\AddressBook;
+namespace ViicSlen\Addressable\Exceptions;
 
 use Exception;
 
