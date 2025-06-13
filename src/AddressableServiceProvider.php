@@ -19,7 +19,6 @@ class AddressableServiceProvider extends PackageServiceProvider
         $package
             ->name('laravel-addressable')
             ->hasConfigFile()
-            ->hasViews()
             ->hasMigration('create_addresses_table')
             ->hasInstallCommand(function (InstallCommand $command) {
                 $command
