@@ -35,7 +35,7 @@ class Address extends Model
     protected static function booted(): void
     {
         static::updating(function (self $address) {
-            if ($address->immutable && $this->isDirty()) {
+            if ($address->immutable && $address->isDirty()) {
                 throw new ImmutableAddressException;
             }
         });
