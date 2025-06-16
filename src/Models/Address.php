@@ -7,13 +7,14 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
 use Rinvex\Country\Country;
+use ViicSlen\Addressable\Concerns\HasImmutability;
 use ViicSlen\Addressable\Database\Factories\AddressFactory;
 use ViicSlen\Addressable\Events\AddressSaved;
-use ViicSlen\Addressable\Exceptions\ImmutableAddressException;
 
 class Address extends Model
 {
     use HasFactory;
+    use HasImmutability;
 
     protected $guarded = [
         'id',
@@ -31,15 +32,6 @@ class Address extends Model
     protected $dispatchesEvents = [
         'saved' => AddressSaved::class,
     ];
-
-    protected static function booted(): void
-    {
-        static::updating(function (self $address) {
-            if ($address->immutable && $address->isDirty()) {
-                throw new ImmutableAddressException;
-            }
-        });
-    }
 
     protected function casts(): array
     {
@@ -59,7 +51,7 @@ class Address extends Model
         return Attribute::get(
             fn ($value, array $attributes): ?Country => isset($attributes['country_code'])
                 ? country(strtolower($attributes['country_code']))
-                : null
+                : null,
         );
     }
 
@@ -68,7 +60,7 @@ class Address extends Model
         return Attribute::get(
             fn ($value, array $attributes): ?string => isset($attributes['country_code'])
                 ? country(strtolower($attributes['country_code']))->getName()
-                : null
+                : null,
         );
     }
 
@@ -84,7 +76,7 @@ class Address extends Model
                     $attributes['postal_code'],
                 ])->filter()->implode(' '),
                 $this->country_name,
-            ])->filter()->implode(', ')
+            ])->filter()->implode(', '),
         );
     }
 
