@@ -23,6 +23,7 @@ trait HasImmutability
     {
         try {
             self::disableImmutability();
+
             return $callback();
         } finally {
             self::enableImmutability();
@@ -37,5 +38,4 @@ trait HasImmutability
             }
         });
     }
-
 }
