@@ -30,7 +30,7 @@ trait HasImmutability
         }
     }
 
-    protected function bootHasImmutability(): void
+    protected static function bootHasImmutability(): void
     {
         static::updating(function (self $address) {
             if (self::$disableImmutability === false && $address->immutable && $address->isDirty()) {
