@@ -6,7 +6,8 @@ use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
-use Rinvex\Country\Country;
+use Sokil\IsoCodes\IsoCodesFactory;
+use Sokil\IsoCodes\Database\Countries\Country;
 use ViicSlen\Addressable\Concerns\HasImmutability;
 use ViicSlen\Addressable\Database\Factories\AddressFactory;
 use ViicSlen\Addressable\Events\AddressSaved;
@@ -48,20 +49,31 @@ class Address extends Model
 
     protected function country(): Attribute
     {
-        return Attribute::get(
-            fn ($value, array $attributes): ?Country => isset($attributes['country_code'])
-                ? country(strtolower($attributes['country_code']))
-                : null,
-        );
+        return Attribute::get(function ($value, array $attributes): ?Country {
+            if (! isset($attributes['country_code'])) {
+                return null;
+            }
+
+            return new IsoCodesFactory()->getCountries()->getByAlpha2(strtolower($attributes['country_code']));
+        });
     }
 
     protected function countryName(): Attribute
     {
-        return Attribute::get(
-            fn ($value, array $attributes): ?string => isset($attributes['country_code'])
-                ? country(strtolower($attributes['country_code']))->getName()
-                : null,
-        );
+        return Attribute::get(function ($value, array $attributes): ?string {
+            if (! isset($attributes['country_code'])) {
+                return null;
+            }
+
+            if (isset($this->country)) {
+                return $this->country->getName();
+            }
+
+            return new IsoCodesFactory()
+                ->getCountries()
+                ->getByAlpha2(strtolower($attributes['country_code']))
+                ?->getName();
+        });
     }
 
     protected function displayAddress(): Attribute
