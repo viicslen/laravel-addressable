@@ -33,7 +33,7 @@ class AddressableServiceProvider extends PackageServiceProvider
     public function packageRegistered(): void
     {
         $this->app->singleton(IsoCodesFactory::class, function () {
-            $driver = new SymfonyTranslationDriver();
+            $driver = new SymfonyTranslationDriver;
             $driver->setLocale(config('app.locale', 'en_US'));
 
             return new IsoCodesFactory(
