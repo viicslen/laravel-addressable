@@ -2,6 +2,12 @@
 
 namespace ViicSlen\Addressable;
 
+use Sokil\IsoCodes\Database\Countries;
+use Sokil\IsoCodes\Database\Countries\Country;
+use Sokil\IsoCodes\Database\Currencies;
+use Sokil\IsoCodes\Database\Currencies\Currency;
+use Sokil\IsoCodes\Database\LanguagesInterface;
+use Sokil\IsoCodes\IsoCodesFactory;
 use ViicSlen\Addressable\Contracts\ValidatesAddress;
 use ViicSlen\Addressable\Exceptions\InvalidAddressValidator;
 use ViicSlen\Addressable\Models\Address;
@@ -33,5 +39,30 @@ class Addressable
             'valid' => $valid,
             'validated' => true,
         ]);
+    }
+
+    public function languages(): LanguagesInterface
+    {
+        return app(IsoCodesFactory::class)->getLanguages();
+    }
+
+    public function currencies(): Currencies
+    {
+        return app(IsoCodesFactory::class)->getCurrencies();
+    }
+
+    public function countries(): Countries
+    {
+        return app(IsoCodesFactory::class)->getCountries();
+    }
+
+    public function currency(string $currencyCode): ?Currency
+    {
+        return $this->currencies()->getByLetterCode(strtoupper($currencyCode));
+    }
+
+    public function country(string $countryCode): ?Country
+    {
+        return $this->countries()->getByAlpha2(strtolower($countryCode));
     }
 }

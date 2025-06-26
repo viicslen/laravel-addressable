@@ -6,11 +6,11 @@ use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
-use Sokil\IsoCodes\IsoCodesFactory;
 use Sokil\IsoCodes\Database\Countries\Country;
 use ViicSlen\Addressable\Concerns\HasImmutability;
 use ViicSlen\Addressable\Database\Factories\AddressFactory;
 use ViicSlen\Addressable\Events\AddressSaved;
+use ViicSlen\Addressable\Facades\Addressable;
 
 class Address extends Model
 {
@@ -54,7 +54,7 @@ class Address extends Model
                 return null;
             }
 
-            return new IsoCodesFactory()->getCountries()->getByAlpha2(strtolower($attributes['country_code']));
+            return Addressable::country($attributes['country_code']);
         });
     }
 
@@ -69,10 +69,7 @@ class Address extends Model
                 return $this->country->getName();
             }
 
-            return new IsoCodesFactory()
-                ->getCountries()
-                ->getByAlpha2(strtolower($attributes['country_code']))
-                ?->getName();
+            return Addressable::country($attributes['country_code'])?->getName();
         });
     }
 

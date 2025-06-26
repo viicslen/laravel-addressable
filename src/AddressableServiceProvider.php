@@ -3,6 +3,8 @@
 namespace ViicSlen\Addressable;
 
 use Illuminate\Support\Facades\Event;
+use Sokil\IsoCodes\IsoCodesFactory;
+use Sokil\IsoCodes\TranslationDriver\SymfonyTranslationDriver;
 use Spatie\LaravelPackageTools\Commands\InstallCommand;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
@@ -30,6 +32,16 @@ class AddressableServiceProvider extends PackageServiceProvider
 
     public function packageRegistered(): void
     {
+        $this->app->singleton(IsoCodesFactory::class, function () {
+            $driver = new SymfonyTranslationDriver();
+            $driver->setLocale(config('app.locale', 'en_US'));
+
+            return new IsoCodesFactory(
+                null,
+                $driver
+            );
+        });
+
         /** @var \ViicSlen\Addressable\Contracts\ValidatesAddress|null $validator */
         $validator = config('addressable.validation.validator');
 
