@@ -58,13 +58,13 @@ class AddressableServiceProvider extends PackageServiceProvider
     protected function registerValidationRules(): void
     {
         Validator::extend('country', static function ($attribute, $value, $parameters, $validator) {
-            return InvokableValidationRule::make(new CountryCode())
+            return InvokableValidationRule::make(new CountryCode)
                 ->setValidator($validator)
                 ->passes($attribute, $value);
         });
 
         Validator::extend('currency', static function ($attribute, $value, $parameters, $validator) {
-            return InvokableValidationRule::make(new CurrencyCode())
+            return InvokableValidationRule::make(new CurrencyCode)
                 ->setValidator($validator)
                 ->passes($attribute, $value);
         });
