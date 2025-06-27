@@ -36,23 +36,14 @@ class AddressableServiceProvider extends PackageServiceProvider
 
     public function packageBooted(): void
     {
-        if (! config('addressable.validation.enabled', true)) {
-            return;
-        }
-
-        $listener = config('addressable.validation.queued', true)
-            ? ValidateAddressQueued::class
-            : ValidateAddress::class;
-
-        Event::listen(AddressSaved::class, $listener);
+        $this->registerValidationRules();
+        $this->registerEventListener();
     }
 
     public function packageRegistered(): void
     {
         $this->registerIsoCodeFactory();
-        $this->registerValidationRules();
         $this->registerAddressValidator();
-
     }
 
     protected function registerValidationRules(): void
@@ -94,5 +85,18 @@ class AddressableServiceProvider extends PackageServiceProvider
 
             return new IsoCodesFactory(translationDriver: $driver);
         });
+    }
+
+    protected function registerEventListener(): void
+    {
+        if (! config('addressable.validation.enabled', true)) {
+            return;
+        }
+
+        $listener = config('addressable.validation.queued', true)
+            ? ValidateAddressQueued::class
+            : ValidateAddress::class;
+
+        Event::listen(AddressSaved::class, $listener);
     }
 }
