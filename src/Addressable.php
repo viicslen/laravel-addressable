@@ -63,6 +63,6 @@ class Addressable
 
     public function country(string $countryCode): ?Country
     {
-        return $this->countries()->getByAlpha2(strtolower($countryCode));
+        return $this->countries()->getByAlpha2(strtoupper($countryCode));
     }
 }
