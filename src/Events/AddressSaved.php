@@ -4,6 +4,7 @@ namespace ViicSlen\Addressable\Events;
 
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
+use ViicSlen\Addressable\Models\Address;
 
 class AddressSaved
 {
@@ -16,6 +17,6 @@ class AddressSaved
      * @return void
      */
     public function __construct(
-        public \ViicSlen\Addressable\Models\Address $address
+        public Address $address
     ) {}
 }

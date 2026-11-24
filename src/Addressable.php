@@ -16,7 +16,7 @@ class Addressable
 {
     public function shouldValidateAddress(Address $address): bool
     {
-        return $address->wasChanged([
+        return filled($address->street1) && $address->wasChanged([
             'street1',
             'street2',
             'city',
@@ -29,15 +29,15 @@ class Addressable
     public function validateAddress(Address $address, ?ValidatesAddress $validator = null): bool
     {
         if ($validator === null) {
-            /** @var \ViicSlen\Addressable\Contracts\ValidatesAddress $validator */
+            /** @var ValidatesAddress $validator */
             $validator = throw_unless(app(ValidatesAddress::class), InvalidAddressValidator::class);
         }
 
         $valid = ($validator)($address);
 
         return $address->updateQuietly([
-            'valid' => $valid,
-            'validated' => true,
+            'valid' => $valid === true,
+            'validated' => $valid !== null,
         ]);
     }
 
