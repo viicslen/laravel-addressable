@@ -4,6 +4,7 @@ namespace ViicSlen\Addressable\Rules;
 
 use Closure;
 use Illuminate\Contracts\Validation\ValidationRule;
+use Illuminate\Translation\PotentiallyTranslatedString;
 use ViicSlen\Addressable\Facades\Addressable;
 
 class CountryCode implements ValidationRule
@@ -11,7 +12,7 @@ class CountryCode implements ValidationRule
     /**
      * Run the validation rule.
      *
-     * @param  Closure(string, ?string=): \Illuminate\Translation\PotentiallyTranslatedString  $fail
+     * @param  Closure(string, ?string=): PotentiallyTranslatedString  $fail
      */
     public function validate(string $attribute, mixed $value, Closure $fail): void
     {

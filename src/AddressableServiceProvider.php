@@ -63,7 +63,7 @@ class AddressableServiceProvider extends PackageServiceProvider
 
     protected function registerAddressValidator(): void
     {
-        /** @var \ViicSlen\Addressable\Contracts\ValidatesAddress|null $validator */
+        /** @var ValidatesAddress|null $validator */
         $validator = config('addressable.validation.validator');
 
         if (! $validator) {
